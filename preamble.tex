@@ -1,0 +1,24 @@
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ukrainian]{babel}
+\usepackage{cmap} 
+
+\usepackage[left=2.5cm, right=1.5cm, top=2cm, bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{etoolbox}
+
+\usepackage[colorlinks=true, linkcolor=blue]{hyperref}
+\usepackage{fancyhdr}
+
+\shorthandoff{"} 
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.5pt}
+\fancyhead[L]{\footnotesize Керівництво зі збирання}
+\fancyfoot[C]{\hyperlink{toc_link}{\thepage}} 
+
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+\patchcmd{\tableofcontents}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
