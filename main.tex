@@ -1,0 +1,78 @@
+\documentclass[a4paper,12pt]{report}
+\input{preamble}
+\usepackage{setspace} % Добавляем этот пакет в main для управления интервалами
+
+\begin{document}
+
+% --- ТИТУЛЬНЫЙ ЛИСТ (ИСПРАВЛЕННЫЙ) ---
+\begin{titlepage}
+    \centering
+    
+    % Верхний отступ от края страницы
+    \vspace*{1.5cm} 
+    
+    % Увеличиваем межстрочный интервал только для заголовка (1.5 = полуторный)
+    \begin{spacing}{1.5}
+        {\huge \textbf{КЕРІВНИЦТВО ЗІ ЗБИРАННЯ}} \\
+        {\huge \textbf{КОНСТРУКТИВІВ ШАСІ 3U19'' ТИПУ ''SCHROFF''}} \\
+        {\huge \textbf{ ВИРОБНИЦТВА ''C-BOX''}} \\
+    \end{spacing}
+    
+    \vspace{1.5cm} % Дистанция между заголовком и подзаголовком
+    
+    {\Large Серія «ОРІОН»} \\
+    
+    \vspace{3cm} % Дистанция перед рисунком
+    
+    % Если файл загружен, он отобразится. Если нет — будет пустой блок нужного размера.
+    \IfFileExists{images/A1.png}{
+        \includegraphics[width=0.85\textwidth]{images/A1.png}
+    }{
+    \framebox[0.85\textwidth]{\rule{0pt}{10cm} ТУТ БУДЕ МАЛЮНОК ШАСІ}
+    }
+
+    \vfill % Уталкивает год в самый низ страницы
+    {\large 2026}
+    
+\end{titlepage}
+
+% --- ОГЛАВЛЕНИЕ ---
+\hypertarget{toc_link}{} 
+\tableofcontents
+\newpage
+
+% --- ОБЩАЯ ЧАСТЬ ---
+\chapter{Збирання базового шасі SCHROFF 3U19''}
+% Используем \IfFileExists, чтобы не было ошибки, если файл еще не создан
+\IfFileExists{common_chassis.tex}{\input{common_chassis}}{Текст розділу в розробці...}
+
+\newpage
+
+% --- МОДИФИКАЦИИ ---
+\chapter{Технічне наповнення модифікацій}
+
+\section{«ОРІОН» APC (61850) 3U19''}
+\IfFileExists{modules/apc_3u19.tex}{\input{modules/apc_3u19}}{Опис готується...}
+
+\section{«ОРІОН» APC (61850) 3U14.25''}
+\IfFileExists{modules/apc_3u14.tex}{\input{modules/apc_3u14}}{Опис готується...}
+
+\section{«ОРІОН» АПК RX}
+\IfFileExists{modules/apk_rx.tex}{\input{modules/apk_rx}}{Опис готується...}
+
+\section{«ОРІОН» АПК OI RX}
+\IfFileExists{modules/apk_oi rx.tex}{\input{modules/apk_oi rx}}{Опис готується...}
+
+\section{«ОРІОН» АПК TX}
+\IfFileExists{modules/apk_tx.tex}{\input{modules/apk_tx}}{Опис готується...}
+
+\section{«ОРІОН» АПК OI TX}
+\IfFileExists{modules/apk_oi tx.tex}{\input{modules/apk_oi tx}}{Опис готується...}
+
+\section{«ОРІОН» УПЗА (61850)}
+\IfFileExists{modules/upza.tex}{\input{modules/upza}}{Опис готується...}
+
+\section{«ОРІОН» ДФЗ (110)}
+\IfFileExists{modules/dfz_110.tex}{\input{modules/dfz_110}}{Опис готується...}
+
+\end{document}
