@@ -11,33 +11,33 @@
 \usepackage{caption}  
 \usepackage{etoolbox} 
 
-% --- НАВИГАЦИЯ ---
-%\usepackage[colorlinks=true, linkcolor=blue]{hyperref}
+% --- НАВИГАЦИЯ (ПЕРЕНЕСЕНО ВВЕРХ) ---
+\usepackage[colorlinks=true, linkcolor=blue, linktoc=all]{hyperref}
 \usepackage{fancyhdr}
 
-% --- ОПРЕДЕЛЕНИЕ ГРАФИЧЕСКИХ БЛОКОВ (Это то, чего не хватало) ---
-\usepackage[most]{tcolorbox} % Пакет для цветных рамок
+% --- ОПРЕДЕЛЕНИЕ ГРАФИЧЕСКИХ БЛОКОВ ---
+\usepackage[most]{tcolorbox} 
 
 \newtcolorbox{mybox}[1]{
-  colback=blue!5!white,    % Цвет фона (светло-синий)
-  colframe=blue!75!black,  % Цвет рамки (темно-синий)
-  fonttitle=\bfseries,      % Жирный шрифт заголовка
-  title=#1,                 % Заголовок блока
-  arc=2mm,                  % Скругление углов
-  enhanced,                 % Улучшенный режим отрисовки
-  drop shadow               % Небольшая тень
+  colback=blue!5!white,
+  colframe=blue!75!black,
+  fonttitle=\bfseries,
+  title=#1,
+  arc=2mm,
+  enhanced,
+  drop shadow
 }
 
 % --- НАСТРОЙКИ ТЕКСТА ---
-\shorthandoff{"} % Отключаем активную кавычку
+\shorthandoff{"} 
 
-% --- КОЛОНТИТУЛЫ ---
+% --- КОЛОНТИТУЛЫ (ТЕПЕРЬ ОНИ ВИДЯТ HYPERLINK) ---
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0.5pt}
 \fancyhead[L]{\footnotesize Інструкція ОРИОН}
 \fancyfoot[C]{\hyperlink{toc_link}{\thepage}} 
 
+% Эти команды исправляют баг, когда на страницах с главой исчезают колонтитулы
 \patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
 \patchcmd{\tableofcontents}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
-\usepackage[colorlinks=true, linkcolor=blue, linktoc=all]{hyperref}
