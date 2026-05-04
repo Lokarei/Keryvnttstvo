@@ -1,20 +1,34 @@
-name: Compile Ether Project
-on: [push] # Запускать сборку при каждом обновлении файлов
+name: Build LaTeX Document
+
+# Запуск при пуше в основную ветку
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  build:
+  build_latex:
     runs-on: ubuntu-latest
     steps:
+      # 1. Копируем файлы из репозитория в виртуальную машину
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Compile LaTeX
+      # 2. Компиляция PDF
+      - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: main.tex # Путь к вашему главному файлу
+          # Главный файл проекта
+          root_file: main.tex
+          # Используем pdflatex (как в Overleaf)
+          compiler: pdflatex
+          # Дополнительные аргументы (для работы с модулями и картинками)
+          args: "-interaction=nonstopmode -halt-on-error -file-line-error"
 
-      - name: Save PDF
+      # 3. Сохранение готового PDF как артефакта GitHub
+      - name: Upload PDF
         uses: actions/upload-artifact@v4
         with:
-          name: Kinetic_Theory_PDF # Имя архива с результатом
-          path: main.pdf           # Файл, который нужно сохранить
+          name: ORION-Instruction-PDF
+          path: main.pdf
