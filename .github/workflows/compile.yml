@@ -1,0 +1,20 @@
+name: Compile Ether Project
+on: [push] # Запускать сборку при каждом обновлении файлов
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex # Путь к вашему главному файлу
+
+      - name: Save PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: Kinetic_Theory_PDF # Имя архива с результатом
+          path: main.pdf           # Файл, который нужно сохранить
