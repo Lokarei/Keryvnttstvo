@@ -1,9 +1,8 @@
 name: Build LaTeX Document
 
-# Запуск при пуше в основную ветку
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" ] # Замените на master, если ваша основная ветка называется так
   pull_request:
     branches: [ "main" ]
 
@@ -11,24 +10,25 @@ jobs:
   build_latex:
     runs-on: ubuntu-latest
     steps:
-      # 1. Копируем файлы из репозитория в виртуальную машину
+      # 1. Загрузка файлов из репозитория
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Компиляция PDF
+      # 2. Компиляция PDF с принудительными прогонами для Оглавления
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
           # Главный файл проекта
           root_file: main.tex
-          # Используем pdflatex (как в Overleaf)
+          # Движок компиляции
           compiler: pdflatex
-          # Дополнительные аргументы (для работы с модулями и картинками)
-          args: "-interaction=nonstopmode -halt-on-error -file-line-error"
+          # -n 3 заставляет систему прогнать компиляцию 3 раза для создания Оглавления
+          # -interaction=nonstopmode позволяет игнорировать мелкие предупреждения
+          args: "-interaction=nonstopmode -halt-on-error -file-line-error -n 3"
 
-      # 3. Сохранение готового PDF как артефакта GitHub
-      - name: Upload PDF
+      # 3. Сохранение готового PDF в артефакты GitHub
+      - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ORION-Instruction-PDF
+          name: Keryvnttstvo-Instruction
           path: main.pdf
