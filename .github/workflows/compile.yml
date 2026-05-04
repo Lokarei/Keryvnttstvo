@@ -1,6 +1,5 @@
-
 name: Compile Keryvnttstvo Project
-on: [push] # Запускать сборку при каждом обновлении файлов
+on: [push]
 
 jobs:
   build:
@@ -12,12 +11,11 @@ jobs:
       - name: Compile LaTeX
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: main.tex # Путь к вашему главному файлу
-          # Добавляем 3 прохода сборки для генерации Оглавления
+          root_file: main.tex
           args: "-interaction=nonstopmode -halt-on-error -file-line-error -n 3"
 
       - name: Save PDF
         uses: actions/upload-artifact@v4
         with:
-          name: Keryvnttstvo_Instruction_PDF # Имя архива с результатом
+          name: Keryvnttstvo_Instruction_PDF
           path: main.pdf
