@@ -1,23 +1,41 @@
+% --- КОДИРОВКИ И ЯЗЫК ---
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[ukrainian]{babel}
 \usepackage{cmap} 
 
+% --- ГРАФИКА И ВЁРСТКА ---
 \usepackage[left=2.5cm, right=1.5cm, top=2cm, bottom=2.5cm]{geometry}
 \usepackage{graphicx}
-\usepackage{float}
-\usepackage{caption}
-\usepackage{etoolbox}
+\usepackage{float}    
+\usepackage{caption}  
+\usepackage{etoolbox} 
 
+% --- НАВИГАЦИЯ ---
 \usepackage[colorlinks=true, linkcolor=blue]{hyperref}
 \usepackage{fancyhdr}
 
-\shorthandoff{"} 
+% --- ОПРЕДЕЛЕНИЕ ГРАФИЧЕСКИХ БЛОКОВ (Это то, чего не хватало) ---
+\usepackage[most]{tcolorbox} % Пакет для цветных рамок
 
+\newtcolorbox{mybox}[1]{
+  colback=blue!5!white,    % Цвет фона (светло-синий)
+  colframe=blue!75!black,  % Цвет рамки (темно-синий)
+  fonttitle=\bfseries,      % Жирный шрифт заголовка
+  title=#1,                 % Заголовок блока
+  arc=2mm,                  % Скругление углов
+  enhanced,                 % Улучшенный режим отрисовки
+  drop shadow               % Небольшая тень
+}
+
+% --- НАСТРОЙКИ ТЕКСТА ---
+\shorthandoff{"} % Отключаем активную кавычку
+
+% --- КОЛОНТИТУЛЫ ---
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0.5pt}
-\fancyhead[L]{\footnotesize Керівництво зі збирання}
+\fancyhead[L]{\footnotesize Інструкція ОРИОН}
 \fancyfoot[C]{\hyperlink{toc_link}{\thepage}} 
 
 \patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
