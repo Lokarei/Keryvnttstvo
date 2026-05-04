@@ -1,25 +1,20 @@
-name: Compile Keryvnttstvo
-on: [push]
+name: Compile Keryvnttstvo Project
+on: [push] # Запускать сборку при каждом обновлении файлов
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: LaTeX
+      - name: Compile LaTeX
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: main.tex
-          args: >-
-            -interaction=nonstopmode
-            -halt-on-error
-            -file-line-error
-            -n 3
+          root_file: main.tex # Путь к вашему главному файлу
 
-      - name: Save
+      - name: Save PDF
         uses: actions/upload-artifact@v4
         with:
-          name: Keryvnttstvo_PDF
-          path: main.pdf
+          name: Keryvnttstvo_Instruction_PDF
+          path: main.pdf           # Файл, который нужно сохранить
