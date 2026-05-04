@@ -1,0 +1,11 @@
+# Игнорируем вспомогательные файлы LaTeX
+*.aux
+*.log
+*.toc
+*.pdf
+*.out
+*.fls
+*.fdb_latexmk
+
+# Но разрешаем заходить в папку sections
+!sections/
