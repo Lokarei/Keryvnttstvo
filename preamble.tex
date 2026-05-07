@@ -45,7 +45,7 @@
 
 % 1. Змінюємо скорочене "Табл." на повне "Таблиця" для української мови
 \addto\captionsukrainian{\renewcommand{\tablename}{Таблиця}}
-
+\addto\captionsukrainian{\renewcommand{\figurename}{Рисунок}}
 % 2. Налаштовуємо розділювач (тире замість двокрапки)
 \DeclareCaptionLabelSeparator{dash}{ --- } % Можна змінити на " — " або " - "
 \captionsetup[table]{
@@ -54,4 +54,4 @@
     singlelinecheck=false    % Щоб підпис не центрувався, якщо він короткий
 }
 
-\addto\captionsukrainian{\renewcommand{\figurename}{Рисунок}}
+
