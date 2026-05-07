@@ -41,3 +41,15 @@
 % Эти команды исправляют баг, когда на страницах с главой исчезают колонтитулы
 \patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
 \patchcmd{\tableofcontents}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+% --- НАЛАШТУВАННЯ ПІДПИСІВ ---
+
+% 1. Змінюємо скорочене "Табл." на повне "Таблиця" для української мови
+\addto\captionsukrainian{\renewcommand{\tablename}{Таблиця}}
+
+% 2. Налаштовуємо розділювач (тире замість двокрапки)
+\DeclareCaptionLabelSeparator{dash}{ --- } % Можна змінити на " — " або " - "
+\captionsetup[table]{
+    labelsep=dash,       % Використовувати наше тире як розділювач
+    justification=justified, % Вирівнювання по ширині (або raggedright)
+    singlelinecheck=false    % Щоб підпис не центрувався, якщо він короткий
+}
