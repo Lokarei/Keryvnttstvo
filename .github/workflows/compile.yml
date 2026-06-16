@@ -8,12 +8,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Optimize PNG Images
+      - name: Optimize and Resize Images (Спосіб 1 + 2)
         run: |
-          sudo apt-get update && sudo apt-get install -y optipng
+          sudo apt-get update && sudo apt-get install -y imagemagick optipng
           if [ -d "images" ]; then
-            echo "Папка images знайдена, запускаємо оптимізацію..."
+            echo "Папка images знайдена. Запускаємо повну оптимізацію..."
+            
+            # Спосіб 2: Зменшуємо роздільну здатність (тільки якщо ширина більша за 1200px) та оптимізуємо вагу
+            find images/ -name "*.png" -exec convert {} -resize "1200x>" -quality 85% {} \;
+            
+            # Спосіб 1: Додатково стискаємо палітру без втрати якості ліній
             find images/ -name "*.png" -exec optipng -o2 {} \;
+            
+            echo "Оптимізацію завершено."
           else
             echo "Папка images не знайдена, пропускаємо крок."
           fi
