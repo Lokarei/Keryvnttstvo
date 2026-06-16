@@ -8,6 +8,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Optimize PNG Images
+        run: |
+          sudo apt-get update && sudo apt-get install -y optipng
+          if [ -d "images" ]; then
+            echo "Папка images знайдена, запускаємо оптимізацію..."
+            find images/ -name "*.png" -exec optipng -o2 {} \;
+          else
+            echo "Папка images не знайдена, пропускаємо крок."
+          fi
+
       - name: Compile LaTeX
         uses: xu-cheng/latex-action@v3
         with:
